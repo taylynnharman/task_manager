@@ -12,8 +12,14 @@ app
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use(express.urlencoded({ extended: true }))
   //.use("/", myRoutes)
-  .use("/tasks", taskRoutes)
-  .use(cors());
+  .use("/tasks", taskRoutes);
+app.use(
+  cors({
+    origin: "https://task-manager-92zb.onrender.com",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 // Connect to MongoDB
 mongoDB.connectDb();
