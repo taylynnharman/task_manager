@@ -12,7 +12,7 @@ const connectDb = async () => {
   try {
     const client = new MongoClient(uri);
     await client.connect();
-    db = client.db("cse341");
+    db = client.db("task_manager");
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Failed to connect to MongoDB", error);

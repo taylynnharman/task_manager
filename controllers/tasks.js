@@ -5,9 +5,11 @@ const getTasks = async (req, res) => {
   try {
     const db = getDb();
     const tasksCollection = db.collection("tasks");
+    const count = await tasksCollection.countDocuments();
+    console.log("Number of documents in tasks collection:", count);
 
     // Fetch all tasks from the collection
-    const tasks = await tasksCollection.find({}).toArray();
+    const tasks = await tasksCollection.find().toArray();
 
     // Respond with the fetched tasks
     res.status(200).json(tasks);
