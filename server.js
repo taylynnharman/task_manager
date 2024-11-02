@@ -6,20 +6,17 @@ const taskRoutes = require("./routes/tasks");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const cors = require("cors");
-
+const corsOptions = {
+  origin: "https://task-manager-92zb.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
 app
   .use(express.json())
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use(express.urlencoded({ extended: true }))
   //.use("/", myRoutes)
-  .use("/tasks", taskRoutes);
-app.use(
-  cors({
-    origin: "https://task-manager-92zb.onrender.com",
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+  .use("/tasks", taskRoutes)
+  .use(cors(corsOptions));
 
 // Connect to MongoDB
 mongoDB.connectDb();
