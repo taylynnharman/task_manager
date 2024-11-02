@@ -3,7 +3,6 @@ const { MongoClient } = require("mongodb");
 // Load environment variables from a .env file
 require("dotenv").config();
 
-// Replace the uri string with your MongoDB connection string
 const uri = process.env.MONGODB_URI;
 
 let db;
