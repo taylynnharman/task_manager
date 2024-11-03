@@ -1,6 +1,7 @@
 const express = require("express");
 const tasksController = require("../controllers/tasks");
 const router = express.Router();
+const validation = require("../middleware/validate");
 
 //GET localhost:8080/tasks
 router.get("/", tasksController.getTasks);
@@ -9,10 +10,10 @@ router.get("/", tasksController.getTasks);
 router.get("/:id", tasksController.getTaskById);
 
 //Route to create a new task. All fields required. Return new task id in response body
-router.post("/", tasksController.createTask);
+router.post("/", validation.saveTask, tasksController.createTask);
 
 //Update task. This route should allow for a url similar to this: api-url-path/tasks/id-to-modify.
-router.put("/:id", tasksController.updateTask);
+router.put("/:id", validation.saveTask, tasksController.updateTask);
 
 //Delete task. Return https status code showing deletion as successful
 router.delete("/:id", tasksController.deleteTask);
