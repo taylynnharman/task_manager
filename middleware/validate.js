@@ -1,6 +1,6 @@
 const validator = require("../helpers/validate");
 
-const saveContact = (req, res, next) => {
+const saveTask = (req, res, next) => {
   const validationRule = {
     user_id: "required|string",
     name: "required|string",
